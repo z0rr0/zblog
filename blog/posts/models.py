@@ -1,6 +1,5 @@
-from datetime import datetime
-
 from django.db import models
+from django.utils import timezone
 
 
 class StatusManager(models.Manager):
@@ -12,7 +11,7 @@ class StatusManager(models.Manager):
 class PublishManager(models.Manager):
 
     def get_queryset(self):
-        return super().get_queryset().active().filter(published__gte=datetime.now())
+        return super().get_queryset().active().filter(published__gte=timezone.now())
 
 
 class StatusModel(models.Model):
@@ -44,6 +43,10 @@ class Tag(CreatedUpdatedModel):
 
     class Meta:
         ordering = ('name',)
+        verbose_name = 'tag'
+
+    def __str__(self):
+        return self.name
 
 
 class Post(StatusModel, CreatedUpdatedModel):
@@ -59,3 +62,6 @@ class Post(StatusModel, CreatedUpdatedModel):
 
     class Meta:
         ordering = ('published', 'id')
+
+    def __str__(self):
+        return self.title
