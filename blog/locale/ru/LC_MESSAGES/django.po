@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zorro.website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-28 23:37+0300\n"
-"PO-Revision-Date: 2019-07-28 23:37+0300\n"
+"POT-Creation-Date: 2019-07-28 23:54+0300\n"
+"PO-Revision-Date: 2019-07-28 23:55+0300\n"
 "Last-Translator: Alexander Zaitsev <me@axv.email>\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -21,38 +21,46 @@ msgstr ""
 "X-Generator: Poedit 2.2.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
+#: posts/models.py:22
+msgid "active"
+msgstr "активный"
+
+#: posts/models.py:23
+msgid "draft"
+msgstr "черновик"
+
 #: posts/models.py:26
 msgid "status"
 msgstr "статус"
 
-#: posts/models.py:37
+#: posts/models.py:38
 msgid "created"
 msgstr "создано"
 
-#: posts/models.py:38
+#: posts/models.py:39
 msgid "updated"
 msgstr "обновлено"
 
-#: posts/models.py:45
+#: posts/models.py:46
 msgid "name"
 msgstr "название"
 
-#: posts/models.py:56
+#: posts/models.py:57
 msgid "title"
 msgstr "заголовок"
 
-#: posts/models.py:57
+#: posts/models.py:58
 msgid "slug"
 msgstr "url путь"
 
-#: posts/models.py:58
+#: posts/models.py:59
 msgid "content"
 msgstr "контент"
 
-#: posts/models.py:59
+#: posts/models.py:60
 msgid "published"
 msgstr "опубликовано"
 
-#: posts/models.py:60
+#: posts/models.py:61
 msgid "tags"
 msgstr "тэги"

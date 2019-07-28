@@ -9,22 +9,22 @@ class StatusManager(models.Manager):
         return super().get_queryset().filter(status='active')
 
 
-class PublishManager(models.Manager):
+class PublishManager(StatusManager):
 
     def get_queryset(self):
-        return super().get_queryset().active().filter(published__gte=timezone.now())
+        return super().get_queryset().filter(published__gte=timezone.now())
 
 
 class StatusModel(models.Model):
     ACTIVE = 'active'
     DRAFT = 'draft'
     STATUS_CHOICES = (
-        (ACTIVE, ACTIVE),
-        (DRAFT, DRAFT),
+        (ACTIVE, _('active')),
+        (DRAFT, _('draft')),
     )
     status = models.CharField(
         verbose_name=_('status'), max_length=16,
-        choices=STATUS_CHOICES, default=DRAFT, db_index=True
+        choices=STATUS_CHOICES, default=DRAFT, db_index=True,
     )
 
     objects = models.Manager()
