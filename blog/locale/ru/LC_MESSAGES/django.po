@@ -1,0 +1,58 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: zorro.website\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-28 23:37+0300\n"
+"PO-Revision-Date: 2019-07-28 23:37+0300\n"
+"Last-Translator: Alexander Zaitsev <me@axv.email>\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: posts/models.py:26
+msgid "status"
+msgstr "статус"
+
+#: posts/models.py:37
+msgid "created"
+msgstr "создано"
+
+#: posts/models.py:38
+msgid "updated"
+msgstr "обновлено"
+
+#: posts/models.py:45
+msgid "name"
+msgstr "название"
+
+#: posts/models.py:56
+msgid "title"
+msgstr "заголовок"
+
+#: posts/models.py:57
+msgid "slug"
+msgstr "url путь"
+
+#: posts/models.py:58
+msgid "content"
+msgstr "контент"
+
+#: posts/models.py:59
+msgid "published"
+msgstr "опубликовано"
+
+#: posts/models.py:60
+msgid "tags"
+msgstr "тэги"

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 
 class StatusManager(models.Manager):
@@ -21,7 +22,10 @@ class StatusModel(models.Model):
         (ACTIVE, ACTIVE),
         (DRAFT, DRAFT),
     )
-    status = models.CharField('status', max_length=16, choices=STATUS_CHOICES, default=DRAFT, db_index=True, blank=True)
+    status = models.CharField(
+        verbose_name=_('status'), max_length=16,
+        choices=STATUS_CHOICES, default=DRAFT, db_index=True
+    )
 
     objects = models.Manager()
     active = StatusManager()
@@ -31,15 +35,15 @@ class StatusModel(models.Model):
 
 
 class CreatedUpdatedModel(models.Model):
-    created = models.DateTimeField('created', auto_now_add=True, blank=True)
-    updated = models.DateTimeField('updated', auto_now=True, blank=True)
+    created = models.DateTimeField(_('created'), auto_now_add=True, blank=True)
+    updated = models.DateTimeField(_('updated'), auto_now=True, blank=True)
 
     class Meta:
         abstract = True
 
 
 class Tag(CreatedUpdatedModel):
-    name = models.CharField('name', max_length=64, unique=True)
+    name = models.CharField(_('name'), max_length=64, unique=True)
 
     class Meta:
         ordering = ('name',)
@@ -50,11 +54,11 @@ class Tag(CreatedUpdatedModel):
 
 
 class Post(StatusModel, CreatedUpdatedModel):
-    title = models.CharField('title', max_length=1024)
-    slug = models.SlugField('slug', unique=True)
-    content = models.TextField('content')
-    published = models.DateTimeField('published', db_index=True)
-    tags = models.ManyToManyField(Tag, blank=True)
+    title = models.CharField(_('title'), max_length=1024)
+    slug = models.SlugField(_('slug'), unique=True)
+    content = models.TextField(_('content'))
+    published = models.DateTimeField(_('published'), db_index=True)
+    tags = models.ManyToManyField(Tag, verbose_name=_('tags'), blank=True)
 
     objects = models.Manager()
     active = StatusManager()
