@@ -6,6 +6,7 @@ from .models import Post, Tag, Comment
 
 class TagAdmin(admin.ModelAdmin):
     list_display = ['name', 'created']
+    search_fields = ('name',)
 
 
 def make_published(modeladmin, request, queryset):
@@ -18,10 +19,14 @@ make_published.short_description = _('Mark selected as published')
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'slug', 'status', 'published', 'created']
     actions = [make_published]
+    search_fields = ('title', 'slug', 'content')
+    list_filter = ['status', 'published']
 
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['pk', 'post', 'author', 'like', 'dislike', 'created']
+    list_display = ['pk', 'post', 'status', 'author', 'like', 'dislike', 'created']
+    list_filter = ['post__title', 'created', 'status']
+    search_fields = ('post__title', 'message')
 
 
 admin.site.register(Post, PostAdmin)
