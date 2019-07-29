@@ -1,5 +1,6 @@
-# zorro.website
+# Zblog
 
+It's django based simple personal blog.
 
 ### Localization
 
