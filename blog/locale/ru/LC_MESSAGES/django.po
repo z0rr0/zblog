@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zorro.website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-28 23:54+0300\n"
-"PO-Revision-Date: 2019-07-28 23:55+0300\n"
+"POT-Creation-Date: 2019-07-29 14:35+0300\n"
+"PO-Revision-Date: 2019-07-29 14:36+0300\n"
 "Last-Translator: Alexander Zaitsev <me@axv.email>\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -21,46 +21,98 @@ msgstr ""
 "X-Generator: Poedit 2.2.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: posts/models.py:22
-msgid "active"
-msgstr "активный"
+#: posts/admin.py:15
+msgid "Mark selected as published"
+msgstr "Отметить выбранные опубликованными"
 
-#: posts/models.py:23
-msgid "draft"
-msgstr "черновик"
-
-#: posts/models.py:26
-msgid "status"
-msgstr "статус"
-
-#: posts/models.py:38
-msgid "created"
-msgstr "создано"
-
-#: posts/models.py:39
-msgid "updated"
-msgstr "обновлено"
-
-#: posts/models.py:46
-msgid "name"
-msgstr "название"
-
-#: posts/models.py:57
-msgid "title"
-msgstr "заголовок"
-
-#: posts/models.py:58
-msgid "slug"
-msgstr "url путь"
-
-#: posts/models.py:59
-msgid "content"
-msgstr "контент"
-
-#: posts/models.py:60
+#: posts/models.py:23 posts/models.py:63
 msgid "published"
 msgstr "опубликовано"
 
-#: posts/models.py:61
+#: posts/models.py:24
+msgid "draft"
+msgstr "черновик"
+
+#: posts/models.py:25
+msgid "deleted"
+msgstr "удален"
+
+#: posts/models.py:28
+msgid "status"
+msgstr "статус"
+
+#: posts/models.py:40
+msgid "created"
+msgstr "создано"
+
+#: posts/models.py:41
+msgid "updated"
+msgstr "обновлено"
+
+#: posts/models.py:48
+msgid "name"
+msgstr "название"
+
+#: posts/models.py:52
+msgid "tag"
+msgstr "тэг"
+
+#: posts/models.py:53 posts/models.py:64
 msgid "tags"
 msgstr "тэги"
+
+#: posts/models.py:60
+msgid "title"
+msgstr "заголовок"
+
+#: posts/models.py:61
+msgid "slug"
+msgstr "url путь"
+
+#: posts/models.py:62
+msgid "content"
+msgstr "контент"
+
+#: posts/models.py:72 posts/models.py:80
+msgid "post"
+msgstr "пост"
+
+#: posts/models.py:73
+msgid "posts"
+msgstr "посты"
+
+#: posts/models.py:81
+msgid "author"
+msgstr "автор"
+
+#: posts/models.py:82
+msgid "message"
+msgstr "сообщение"
+
+#: posts/models.py:82
+msgid "comment text"
+msgstr "текст комментария"
+
+#: posts/models.py:83
+msgid "like"
+msgstr "лайк"
+
+#: posts/models.py:84
+msgid "dislike"
+msgstr "дислайк"
+
+#: posts/models.py:86
+msgid "reply"
+msgstr "ответ"
+
+#: posts/models.py:87
+msgid "reply to comment"
+msgstr "ответ на комментарий"
+
+#: posts/models.py:92
+msgid "comment"
+msgstr "комментарий"
+
+#: posts/models.py:93
+msgid "comments"
+msgstr "комментарии"

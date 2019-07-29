@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 class StatusManager(models.Manager):
 
     def get_queryset(self):
-        return super().get_queryset().filter(status='active')
+        return super().get_queryset().filter(status='published')
 
 
 class PublishManager(StatusManager):
@@ -16,11 +16,13 @@ class PublishManager(StatusManager):
 
 
 class StatusModel(models.Model):
-    ACTIVE = 'active'
+    PUBLISHED = 'published'
     DRAFT = 'draft'
+    DELETED = 'deleted'
     STATUS_CHOICES = (
-        (ACTIVE, _('active')),
+        (PUBLISHED, _('published')),
         (DRAFT, _('draft')),
+        (DELETED, _('deleted')),
     )
     status = models.CharField(
         verbose_name=_('status'), max_length=16,
@@ -47,14 +49,15 @@ class Tag(CreatedUpdatedModel):
 
     class Meta:
         ordering = ('name',)
-        verbose_name = 'tag'
+        verbose_name = _('tag')
+        verbose_name_plural = _('tags')
 
     def __str__(self):
         return self.name
 
 
 class Post(StatusModel, CreatedUpdatedModel):
-    title = models.CharField(_('title'), max_length=1024)
+    title = models.CharField(_('title'), max_length=512, db_index=True)
     slug = models.SlugField(_('slug'), unique=True)
     content = models.TextField(_('content'))
     published = models.DateTimeField(_('published'), db_index=True)
@@ -66,6 +69,28 @@ class Post(StatusModel, CreatedUpdatedModel):
 
     class Meta:
         ordering = ('published', 'id')
+        verbose_name = _('post')
+        verbose_name_plural = _('posts')
 
     def __str__(self):
         return self.title
+
+
+class Comment(StatusModel, CreatedUpdatedModel):
+    post = models.ForeignKey(Post, verbose_name=_('post'), on_delete=models.CASCADE)
+    author = models.CharField(_('author'), max_length=512, null=True, blank=True)
+    message = models.TextField(_('message'), help_text=_('comment text'))
+    like = models.PositiveIntegerField(_('like'), default=0, blank=True)
+    dislike = models.PositiveIntegerField(_('dislike'), default=0, blank=True)
+    reply = models.ForeignKey(
+        'self', verbose_name=_('reply'), on_delete=models.DO_NOTHING,
+        help_text=_('reply to comment'), null=True, blank=True,
+    )
+
+    class Meta:
+        ordering = ('post', '-pk')
+        verbose_name = _('comment')
+        verbose_name_plural = _('comments')
+
+    def __str__(self):
+        return 'Comment #{} for post "{}"'.format(self.pk, self.post)
