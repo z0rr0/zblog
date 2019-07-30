@@ -1,5 +1,9 @@
 # Zblog
 
+[![version](https://img.shields.io/github/tag/z0rr0/zblog.svg)](https://github.com/z0rr0/zblog/releases/latest)
+[![Build Status](https://travis-ci.com/z0rr0/zblog.svg?branch=master)](https://travis-ci.com/z0rr0/zblog)
+[![license](https://img.shields.io/github/license/z0rr0/zblog.svg)](https://github.com/z0rr0/zblog/blob/master/LICENSE)
+
 It's django based simple personal blog.
 
 ## Localization
@@ -32,3 +36,7 @@ python manage.py createsuperuser
 1. site map
 1. rss feed
 1. comments support
+
+## License
+
+This source code is governed by a MIT license that can be found in the [LICENSE](https://github.com/z0rr0/zblog/blob/master/LICENSE) file.
