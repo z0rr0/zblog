@@ -12,7 +12,7 @@ class StatusManager(models.Manager):
 class PublishManager(StatusManager):
 
     def get_queryset(self):
-        return super().get_queryset().filter(published__gte=timezone.now())
+        return super().get_queryset().filter(publish__gte=timezone.now())
 
 
 class StatusModel(models.Model):
@@ -58,17 +58,17 @@ class Tag(CreatedUpdatedModel):
 
 class Post(StatusModel, CreatedUpdatedModel):
     title = models.CharField(_('title'), max_length=512, db_index=True)
-    slug = models.SlugField(_('slug'), unique=True)
-    content = models.TextField(_('content'))
-    published = models.DateTimeField(_('published'), db_index=True)
+    slug = models.SlugField(_('slug'), unique_for_date='publish')
+    body = models.TextField(_('body'))
+    publish = models.DateTimeField(_('date of publication'), db_index=True, default=timezone.now)
     tags = models.ManyToManyField(Tag, verbose_name=_('tags'), blank=True)
 
     objects = models.Manager()
     active = StatusManager()
-    public = PublishManager()
+    published = PublishManager()
 
     class Meta:
-        ordering = ('published', 'id')
+        ordering = ('publish', 'id')
         verbose_name = _('post')
         verbose_name_plural = _('posts')
 
@@ -80,8 +80,6 @@ class Comment(StatusModel, CreatedUpdatedModel):
     post = models.ForeignKey(Post, verbose_name=_('post'), on_delete=models.CASCADE)
     author = models.CharField(_('author'), max_length=512, null=True, blank=True)
     message = models.TextField(_('message'), help_text=_('comment text'))
-    like = models.PositiveIntegerField(_('like'), default=0, blank=True)
-    dislike = models.PositiveIntegerField(_('dislike'), default=0, blank=True)
     reply = models.ForeignKey(
         'self', verbose_name=_('reply'), on_delete=models.DO_NOTHING,
         help_text=_('reply to comment'), null=True, blank=True,

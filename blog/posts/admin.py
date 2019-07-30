@@ -17,14 +17,15 @@ make_published.short_description = _('Mark selected as published')
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'slug', 'status', 'published', 'created']
+    list_display = ['title', 'slug', 'status', 'publish', 'created']
     actions = [make_published]
-    search_fields = ('title', 'slug', 'content')
-    list_filter = ['status', 'published']
+    search_fields = ('title', 'slug', 'body')
+    list_filter = ['status', 'publish']
+    prepopulated_fields = {'slug': ('title',)}
 
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['pk', 'post', 'status', 'author', 'like', 'dislike', 'created']
+    list_display = ['pk', 'post', 'status', 'author', 'created']
     list_filter = ['post__title', 'created', 'status']
     search_fields = ('post__title', 'message')
 

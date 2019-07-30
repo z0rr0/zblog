@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zorro.website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-29 14:35+0300\n"
-"PO-Revision-Date: 2019-07-29 14:36+0300\n"
+"POT-Creation-Date: 2019-07-30 22:38+0300\n"
+"PO-Revision-Date: 2019-07-30 22:39+0300\n"
 "Last-Translator: Alexander Zaitsev <me@axv.email>\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -21,11 +21,11 @@ msgstr ""
 "X-Generator: Poedit 2.2.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: posts/admin.py:15
+#: posts/admin.py:16
 msgid "Mark selected as published"
 msgstr "Отметить выбранные опубликованными"
 
-#: posts/models.py:23 posts/models.py:63
+#: posts/models.py:23
 msgid "published"
 msgstr "опубликовано"
 
@@ -70,8 +70,12 @@ msgid "slug"
 msgstr "url путь"
 
 #: posts/models.py:62
-msgid "content"
-msgstr "контент"
+msgid "body"
+msgstr "объект"
+
+#: posts/models.py:63
+msgid "date of publication"
+msgstr "дата публикации"
 
 #: posts/models.py:72 posts/models.py:80
 msgid "post"
@@ -93,26 +97,27 @@ msgstr "сообщение"
 msgid "comment text"
 msgstr "текст комментария"
 
-#: posts/models.py:83
-msgid "like"
-msgstr "лайк"
-
 #: posts/models.py:84
-msgid "dislike"
-msgstr "дислайк"
-
-#: posts/models.py:86
 msgid "reply"
 msgstr "ответ"
 
-#: posts/models.py:87
+#: posts/models.py:85
 msgid "reply to comment"
 msgstr "ответ на комментарий"
 
-#: posts/models.py:92
+#: posts/models.py:90
 msgid "comment"
 msgstr "комментарий"
 
-#: posts/models.py:93
+#: posts/models.py:91
 msgid "comments"
 msgstr "комментарии"
+
+#~ msgid "content"
+#~ msgstr "контент"
+
+#~ msgid "like"
+#~ msgstr "лайк"
+
+#~ msgid "dislike"
+#~ msgstr "дислайк"
