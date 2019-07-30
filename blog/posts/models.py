@@ -12,7 +12,7 @@ class StatusManager(models.Manager):
 class PublishManager(StatusManager):
 
     def get_queryset(self):
-        return super().get_queryset().filter(publish__gte=timezone.now())
+        return super().get_queryset().filter(publish__lte=timezone.now())
 
 
 class StatusModel(models.Model):

@@ -32,6 +32,7 @@ python manage.py createsuperuser
 1. base template
 1. error pages
 1. flat pages
+1. markdown support
 1. index/post pages
 1. site map
 1. rss feed
