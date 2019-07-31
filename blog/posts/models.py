@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
@@ -45,7 +46,7 @@ class CreatedUpdatedModel(models.Model):
 
 
 class Tag(CreatedUpdatedModel):
-    name = models.CharField(_('name'), max_length=64, unique=True)
+    name = models.SlugField(_('name'), max_length=64, unique=True)
 
     class Meta:
         ordering = ('name',)
@@ -68,12 +69,16 @@ class Post(StatusModel, CreatedUpdatedModel):
     published = PublishManager()
 
     class Meta:
-        ordering = ('publish', 'id')
+        ordering = ('-publish', '-id')
         verbose_name = _('post')
         verbose_name_plural = _('posts')
 
     def __str__(self):
         return self.title
+
+    @property
+    def url(self):
+        return reverse_lazy('read', args=(self.publish.year, self.publish.month, self.publish.day, self.slug))
 
 
 class Comment(StatusModel, CreatedUpdatedModel):
