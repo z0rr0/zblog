@@ -1,11 +1,73 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% load i18n %}
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Personal blog">
+    <meta name="author" content="Aleksader Zaitsev">
     <title>{% block title %}{% endblock %}</title>
-</head>
-<body>
-    {% block content %}{% endblock %}
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700" rel="stylesheet" type="text/css">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="{% static "posts/css/main.css" %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="sticky-footer.css" rel="stylesheet"> -->
+  </head>
+  <body class="d-flex flex-column h-100">
+    <!-- Begin page content -->
+<main role="main" class="flex-shrink-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="mt-5">Sticky footer</h1>
+        <p>some text</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9">
+        {% block content %}{% endblock %}
+      </div>
+      <div class="col-3">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <form>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="search" placeholder="{% trans "Search" %}">
+                </div>
+                <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <h4>Tags</h4>
+              <p>
+                <a href="https://ya.ru" class="badge badge-primary">Primary</a>
+                <a href="#" class="badge badge-secondary">Secondary</a>
+                <a href="#" class="badge badge-success">Success</a>
+                <a href="#" class="badge badge-danger">Danger</a>
+                <a href="#" class="badge badge-warning">Warning</a>
+                <a href="#" class="badge badge-info">Info</a>
+                <a href="#" class="badge badge-light">Light</a>
+                <a href="#" class="badge badge-dark">Dark</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer mt-auto py-3">
+  <div class="container">
+    <span class="text-muted">Place sticky footer content here.</span>
+  </div>
+</footer>
 </body>
 </html>

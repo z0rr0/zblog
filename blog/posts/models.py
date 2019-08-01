@@ -78,7 +78,9 @@ class Post(StatusModel, CreatedUpdatedModel):
 
     @property
     def url(self):
-        return reverse_lazy('read', args=(self.publish.year, self.publish.month, self.publish.day, self.slug))
+        tz = timezone.get_current_timezone()
+        local = tz.normalize(self.publish)
+        return reverse_lazy('read', args=(local.year, local.month, local.day, self.slug))
 
 
 class Comment(StatusModel, CreatedUpdatedModel):

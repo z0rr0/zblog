@@ -133,7 +133,7 @@ CACHES = {
         'TIMEOUT': 300,
     },
 }
-POSTS_PER_PAGE = 10
+POSTS_PER_PAGE = 5
 
 if 'test' in sys.argv:
     CACHES['default']['BACKEND'] = 'django.core.cache.backends.dummy.DummyCache'

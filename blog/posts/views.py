@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.conf import settings
+from django.db.models import Q
 from django.http import HttpResponse, HttpRequest
 from django.views.generic import ListView, DetailView
 
@@ -35,6 +36,20 @@ class PostListView(StaffViewMixin, ListView):
         # add tags and user
         context['tags'] = Tag.objects.all()
         return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search = self.request.GET.get('search')
+        if search is not None:
+            queryset = queryset.filter(
+                Q(title__icontains=search) |
+                Q(body__icontains=search) |
+                Q(tags__name__iexact=search)
+            )
+        tag = self.kwargs.get('tag')
+        if tag is not None:
+            queryset = queryset.filter(tags__name__iexact=tag)
+        return queryset
 
 
 class PostDetailView(StaffViewMixin, DetailView):
