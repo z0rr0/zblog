@@ -17,10 +17,33 @@ from django.conf import settings
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
+from django.contrib.flatpages import views
+from django.contrib.sitemaps.views import sitemap
+from django.contrib.flatpages.sitemaps import FlatPageSitemap
+from django.contrib.sitemaps import GenericSitemap
+from posts.models import Post
+
+
+posts_sitemap_info = {
+    'queryset': Post.published.all(),
+    'date_field': 'publish',
+}
 
 urlpatterns = [
+    path('about/', views.flatpage, {'url': '/about/'}, name='about'),
     path('admin/', admin.site.urls),
     path('', include('posts.urls')),
+    # the sitemap
+    path(
+        'sitemap.xml', sitemap,
+        {
+            'sitemaps': {
+                'flatpages': FlatPageSitemap,
+                'posts': GenericSitemap(posts_sitemap_info, priority=0.6),
+            },
+        },
+        name='django.contrib.sitemaps.views.sitemap',
+    ),
 ]
 
 if settings.DEBUG:

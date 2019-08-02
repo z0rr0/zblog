@@ -86,6 +86,9 @@ class Post(StatusModel, CreatedUpdatedModel):
         local = tz.normalize(self.publish)
         return reverse_lazy('read', args=(local.year, local.month, local.day, self.slug))
 
+    def get_absolute_url(self):
+        return self.url
+
 
 class Comment(StatusModel, CreatedUpdatedModel):
     post = models.ForeignKey(Post, verbose_name=_('post'), on_delete=models.CASCADE)
