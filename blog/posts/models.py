@@ -53,8 +53,12 @@ class Tag(CreatedUpdatedModel):
         verbose_name = _('tag')
         verbose_name_plural = _('tags')
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
+
+    @property
+    def url(self):
+        return reverse_lazy('tag_filter', args=(self.name))
 
 
 class Post(StatusModel, CreatedUpdatedModel):
@@ -73,7 +77,7 @@ class Post(StatusModel, CreatedUpdatedModel):
         verbose_name = _('post')
         verbose_name_plural = _('posts')
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.title
 
     @property
@@ -97,5 +101,5 @@ class Comment(StatusModel, CreatedUpdatedModel):
         verbose_name = _('comment')
         verbose_name_plural = _('comments')
 
-    def __str__(self):
+    def __str__(self) -> str:
         return 'Comment #{} for post "{}"'.format(self.pk, self.post)
