@@ -22,6 +22,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.flatpages.sitemaps import FlatPageSitemap
 from django.contrib.sitemaps import GenericSitemap
 from posts.models import Post
+from posts.feed import LatestPostsFeed
 
 
 posts_sitemap_info = {
@@ -32,6 +33,7 @@ posts_sitemap_info = {
 urlpatterns = [
     path('about/', views.flatpage, {'url': '/about/'}, name='about'),
     path('admin/', admin.site.urls),
+    path('feed/', LatestPostsFeed(), name='feed'),
     path('', include('posts.urls')),
     # the sitemap
     path(
