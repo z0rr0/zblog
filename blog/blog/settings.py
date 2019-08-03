@@ -141,7 +141,7 @@ SITE_ID = 1
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': '/tmp/zorro.website',
+        'LOCATION': '/tmp/zblog',
         'TIMEOUT': 300,
     },
 }

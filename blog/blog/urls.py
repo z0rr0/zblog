@@ -22,6 +22,7 @@ from django.contrib.sitemaps import GenericSitemap
 from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
+from django.views.decorators.vary import vary_on_cookie
 
 from posts.feed import LatestPostsFeed
 from posts.models import Post
@@ -32,9 +33,9 @@ posts_sitemap_info = {
 }
 
 urlpatterns = [
-    path('about/', views.flatpage, {'url': '/about/'}, name='about'),
+    path('about/', vary_on_cookie(views.flatpage), {'url': '/about/'}, name='about'),
     path('admin/', admin.site.urls),
-    path('feed/', LatestPostsFeed(), name='feed'),
+    path('feed/', vary_on_cookie(LatestPostsFeed()), name='feed'),
     path('', include('posts.urls')),
     # the sitemap
     path(
