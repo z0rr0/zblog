@@ -5,7 +5,7 @@
   <h3>
     {{post.title}}
     {% if request.is_staff_user %}
-      <small>({{ post.status }})</small>
+      <small>({{ post.get_status_display }})</small>
     {% endif %}
   </h3>
   <h6>

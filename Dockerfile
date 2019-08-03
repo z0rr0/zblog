@@ -10,16 +10,14 @@ RUN apk update && apk upgrade
 RUN apk add tzdata ca-certificates gcc build-base python3 python3-dev uwsgi-python3 \
     mariadb-client mariadb-connector-c mariadb-connector-c-dev
 
-VOLUME ["/data/conf", "/var/media"]
 ADD requirements.txt /tmp/requirements.txt
 RUN pip3 install -r /tmp/requirements.txt
 ADD blog /var/blog
 RUN rm -rf /var/blog/media
-
+VOLUME ["/data/conf", "/var/blog/media"]
 
 RUN rm -f /var/blog/blog/local_settings.py && \
-    ln -s /data/conf/local_settings.py /var/blog/blog/local_settings.py && \
-    ln -s /var/blog/media /var/media
+    ln -s /data/conf/local_settings.py /var/blog/blog/local_settings.py
 
 EXPOSE 32123
 WORKDIR /var/blog

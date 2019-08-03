@@ -9,10 +9,13 @@ class BlogMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        # tags cloud
-        request.tags = Tag.published.values('name').annotate(count=Count('posts__pk')).order_by('-count')
         # user staff flag
         request.is_staff_user = request.user.is_authenticated and request.user.is_staff
+
+        # tags cloud
+        tags_qs = Tag.objects.all() if request.is_staff_user else Tag.published.all()
+        request.tags = tags_qs.values('name').annotate(count=Count('posts__pk')).order_by('-count')
+
         # footer links
         request.settings_params = {
             'github': settings.GITHUB_LINK,
