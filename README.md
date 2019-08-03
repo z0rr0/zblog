@@ -14,16 +14,37 @@ Read Django docs ["Internationalization and localization"](https://docs.djangopr
 cd blog
 python manage.py makemessages -l <LANG>
 # edit locale/<LANG>/LC_MESSAGES/django.po
-python manage.py compilemessages
+cd ..
+make prepare
 ```
 
 ## Deploy
+
+### Development
+
+```sh
+cd blog
+python manage.py runserver
+```
+
+### Docker images
+
+```sh
+make docker
+```
+
+### Prepare database
 
 ```sh
 cd blog
 python manage.py migrate
 python manage.py createsuperuser
-python manage.py compilemessages
+```
+
+### Tests
+
+```sh
+make test
 ```
 
 ## Roadmap
@@ -35,7 +56,7 @@ python manage.py compilemessages
 1. ~~index/post pages~~
 1. ~~site map~~
 1. ~~rss feed~~
-1. error pages
+1. ~~error pages~~
 1. markdown support
 1. comments support
 

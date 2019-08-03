@@ -14,16 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.urls import include, path
 from django.contrib.flatpages import views
-from django.contrib.sitemaps.views import sitemap
 from django.contrib.flatpages.sitemaps import FlatPageSitemap
 from django.contrib.sitemaps import GenericSitemap
-from posts.models import Post
-from posts.feed import LatestPostsFeed
+from django.contrib.sitemaps.views import sitemap
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.urls import include, path
 
+from posts.feed import LatestPostsFeed
+from posts.models import Post
 
 posts_sitemap_info = {
     'queryset': Post.published.all(),
@@ -50,3 +51,4 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

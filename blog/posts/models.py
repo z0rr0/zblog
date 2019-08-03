@@ -114,3 +114,15 @@ class Comment(StatusModel, CreatedUpdatedModel):
 
     def __str__(self) -> str:
         return 'Comment #{} for post "{}"'.format(self.pk, self.post)
+
+
+class Attachment(CreatedUpdatedModel):
+    name = models.CharField(_('name'), max_length=255)
+    data = models.FileField(_('data'), max_length=1024)
+
+    class Meta:
+        verbose_name = _('attachment')
+        verbose_name_plural = _('attachments')
+
+    def __str__(self) -> str:
+        return self.data.url

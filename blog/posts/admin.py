@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from .models import Comment, Post, Tag
+from .models import Attachment, Comment, Post, Tag
 
 
 class TagAdmin(admin.ModelAdmin):
@@ -30,6 +30,13 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ('post__title', 'message')
 
 
+class AttachmentAdmin(admin.ModelAdmin):
+    list_display = ['name', 'data', '__str__', 'created']
+    list_filter = ['created']
+    search_fields = ('name',)
+
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Comment, CommentAdmin)
+admin.site.register(Attachment, AttachmentAdmin)

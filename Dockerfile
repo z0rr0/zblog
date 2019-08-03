@@ -9,14 +9,17 @@ MAINTAINER Alexander Zaitsev "admin@zorro.website"
 RUN apk update && apk upgrade
 RUN apk add tzdata ca-certificates gcc build-base python3 python3-dev uwsgi-python3 \
     mariadb-client mariadb-connector-c mariadb-connector-c-dev
-RUN pip3 install mysqlclient Django==2.2.3
 
 VOLUME ["/data/conf", "/var/media"]
+ADD requirements.txt /tmp/requirements.txt
+RUN pip3 install -r /tmp/requirements.txt
 ADD blog /var/blog
+RUN rm -rf /var/blog/media
 
-RUN rm -f /var/blog/blog/local_settings.py /var/blog/blog/settings.py && \
+
+RUN rm -f /var/blog/blog/local_settings.py && \
     ln -s /data/conf/local_settings.py /var/blog/blog/local_settings.py && \
-    ln -s /data/conf/settings.py /var/blog/blog/settings.py
+    ln -s /var/blog/media /var/media
 
 EXPOSE 32123
 WORKDIR /var/blog
@@ -24,7 +27,7 @@ ENTRYPOINT ["/usr/sbin/uwsgi"]
 CMD ["--ini", "/data/conf/uwsgi_blog.ini"]
 
 # docker compose example
-# store:
+# blog:
 #   restart: always
 #   image: "z0rr0/zblog:latest"
 #   ports:

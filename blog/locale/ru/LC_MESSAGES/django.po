@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zorro.website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-03 13:47+0300\n"
-"PO-Revision-Date: 2019-08-03 13:47+0300\n"
+"POT-Creation-Date: 2019-08-03 18:33+0300\n"
+"PO-Revision-Date: 2019-08-03 18:34+0300\n"
 "Last-Translator: Alexander Zaitsev <me@axv.email>\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -53,7 +53,7 @@ msgstr "создано"
 msgid "updated"
 msgstr "обновлено"
 
-#: posts/models.py:54
+#: posts/models.py:54 posts/models.py:120
 msgid "name"
 msgstr "название"
 
@@ -116,6 +116,30 @@ msgstr "комментарий"
 #: posts/models.py:113
 msgid "comments"
 msgstr "комментарии"
+
+#: posts/models.py:121
+msgid "data"
+msgstr "данные"
+
+#: posts/models.py:124
+msgid "attachment"
+msgstr "вложение"
+
+#: posts/models.py:125
+msgid "attachments"
+msgstr "вложения"
+
+#: posts/templates/400.html:5
+msgid "Sorry, request error"
+msgstr "Извините, ошибка запроса"
+
+#: posts/templates/404.html:5
+msgid "Sorry, page not found"
+msgstr "Извините, страница не найдена"
+
+#: posts/templates/500.html:5
+msgid "Sorry, internal server error"
+msgstr "Извините, внутренняя ошибка сервера"
 
 #: posts/templates/blog/base.html:39
 msgid "Search"
