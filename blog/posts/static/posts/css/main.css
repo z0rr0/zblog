@@ -20,6 +20,9 @@ body {
 #blog_title {
   padding-bottom: 10px;
 }
+#error_msg {
+  padding-top: 50px;
+}
 /*#info_panel {*/
 /*  border-left: solid;*/
 /*  border-left-width: 1pt;*/
