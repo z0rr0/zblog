@@ -1,5 +1,5 @@
 TARGET_DIR=blog
-TAG=zblog
+TAG=z0rr0/zblog
 
 all: test
 
