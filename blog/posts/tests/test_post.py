@@ -80,7 +80,7 @@ class PostViewTestCase(PostBaseTestCase):
             self.assertNotContains(resp, tpl.format(post.url, post.title), html=True)
 
     def _test_detail(self, included, excluded):
-        tpl = '<h1>{}</h1>'
+        tpl = '<title>{}</title>'
         posts = Post.objects.filter(slug__in=included)
         for post in posts:
             resp = self.client.get(post.url)
