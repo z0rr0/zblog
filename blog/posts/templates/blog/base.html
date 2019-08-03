@@ -22,20 +22,19 @@
 <main role="main" class="flex-shrink-0">
   <div class="container">
     <div class="row">
-      <div class="col-12">
-        <h1 class="mt-5">Sticky footer</h1>
-        <p>some text</p>
+      <div class="col-12" id="blog_title">
+        <h1 class="mt-5"><a href="/" class="title">{{request.settings_params.title}}</a></h1>
       </div>
     </div>
     <div class="row">
       <div class="col-9">
         {% block content %}{% endblock %}
       </div>
-      <div class="col-3">
+      <div class="col-3" id="info_panel">
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <form>
+              <form action="/">
                 <div class="form-group">
                   <input type="text" class="form-control" name="search" placeholder="{% trans "Search" %}">
                 </div>
@@ -45,17 +44,21 @@
           </div>
           <div class="row">
             <div class="col-12">
-              <h4 id="tags">Tags</h4>
-              <p>
-                <a href="https://ya.ru" class="badge badge-primary">Primary</a>
-                <a href="#" class="badge badge-secondary">Secondary</a>
-                <a href="#" class="badge badge-success">Success</a>
-                <a href="#" class="badge badge-danger">Danger</a>
-                <a href="#" class="badge badge-warning">Warning</a>
-                <a href="#" class="badge badge-info">Info</a>
-                <a href="#" class="badge badge-light">Light</a>
-                <a href="#" class="badge badge-dark">Dark</a>
-              </p>
+              <h4 id="info_part">{% trans "Tags" %}</h4>
+              <div id="tag_names">
+                {% for tag in request.tags %}
+                  <a href="{% url 'tag_filter' tag.name %}" class="badge badge-primary">{{tag.name}} ({{ tag.count }})
+                  </a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <h4 id="info_part">RSS feed</h4>
+              <div>
+                <a href="{% url "feed" %}">{% trans "Subscribe to RSS" %}</a>
+              </div>
             </div>
           </div>
         </div>
@@ -64,9 +67,14 @@
   </div>
 </main>
 
-<footer class="footer mt-auto py-3">
+<footer class="footer mt-auto py-3" id="footer">
   <div class="container">
-    <span class="text-muted">Place sticky footer content here.</span>
+    <span class="text-muted">
+      <a href="{{ request.settings_params.github }}" title="GitHub" class="footer_link">
+        <img src="{% static 'posts/img/GitHub_Logo.png' %}" height="20px">
+      </a>
+      <a href="{% url "about" %}" class="footer_link">{% trans "About authors" %}</a>
+    </span>
   </div>
 </footer>
 </body>

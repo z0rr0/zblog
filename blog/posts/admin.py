@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from .models import Post, Tag, Comment
+from .models import Comment, Post, Tag
 
 
 class TagAdmin(admin.ModelAdmin):

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zorro.website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-01 23:53+0300\n"
-"PO-Revision-Date: 2019-08-01 23:54+0300\n"
+"POT-Creation-Date: 2019-08-03 13:47+0300\n"
+"PO-Revision-Date: 2019-08-03 13:47+0300\n"
 "Last-Translator: Alexander Zaitsev <me@axv.email>\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -25,91 +25,95 @@ msgstr ""
 msgid "Mark selected as published"
 msgstr "Отметить выбранные опубликованными"
 
-#: posts/models.py:24
+#: posts/feed.py:12
+msgid "New posts"
+msgstr "Новые записи в блоге"
+
+#: posts/models.py:29
 msgid "published"
 msgstr "опубликовано"
 
-#: posts/models.py:25
+#: posts/models.py:30
 msgid "draft"
 msgstr "черновик"
 
-#: posts/models.py:26
+#: posts/models.py:31
 msgid "deleted"
 msgstr "удален"
 
-#: posts/models.py:29
+#: posts/models.py:34
 msgid "status"
 msgstr "статус"
 
-#: posts/models.py:41
+#: posts/models.py:46
 msgid "created"
 msgstr "создано"
 
-#: posts/models.py:42
+#: posts/models.py:47
 msgid "updated"
 msgstr "обновлено"
 
-#: posts/models.py:49
+#: posts/models.py:54
 msgid "name"
 msgstr "название"
 
-#: posts/models.py:53
+#: posts/models.py:61
 msgid "tag"
 msgstr "тэг"
 
-#: posts/models.py:54 posts/models.py:65
+#: posts/models.py:62 posts/models.py:77
 msgid "tags"
 msgstr "тэги"
 
-#: posts/models.py:61
+#: posts/models.py:73
 msgid "title"
 msgstr "заголовок"
 
-#: posts/models.py:62
+#: posts/models.py:74
 msgid "slug"
 msgstr "url путь"
 
-#: posts/models.py:63
+#: posts/models.py:75
 msgid "body"
 msgstr "объект"
 
-#: posts/models.py:64
+#: posts/models.py:76
 msgid "date of publication"
 msgstr "дата публикации"
 
-#: posts/models.py:73 posts/models.py:87
+#: posts/models.py:85 posts/models.py:102
 msgid "post"
 msgstr "пост"
 
-#: posts/models.py:74
+#: posts/models.py:86
 msgid "posts"
 msgstr "посты"
 
-#: posts/models.py:88
+#: posts/models.py:103
 msgid "author"
 msgstr "автор"
 
-#: posts/models.py:89
+#: posts/models.py:104
 msgid "message"
 msgstr "сообщение"
 
-#: posts/models.py:89
+#: posts/models.py:104
 msgid "comment text"
 msgstr "текст комментария"
 
-#: posts/models.py:91
+#: posts/models.py:106
 msgid "reply"
 msgstr "ответ"
 
-#: posts/models.py:92
+#: posts/models.py:107
 msgid "reply to comment"
 msgstr "ответ на комментарий"
 
-#: posts/models.py:97
+#: posts/models.py:112
 msgid "comment"
 msgstr "комментарий"
 
-#: posts/models.py:98
+#: posts/models.py:113
 msgid "comments"
 msgstr "комментарии"
 
@@ -121,6 +125,22 @@ msgstr "Поиск"
 msgid "Submit"
 msgstr "Отправить"
 
+#: posts/templates/blog/base.html:47
+msgid "Tags"
+msgstr "Тэги"
+
+#: posts/templates/blog/base.html:60
+msgid "Subscribe to RSS"
+msgstr "Подписаться на RSS"
+
+#: posts/templates/blog/base.html:76
+msgid "About authors"
+msgstr "Об авторах"
+
+#: posts/templates/blog/post/detail.html:12
+msgid "Published"
+msgstr "Опубликовано"
+
 #: posts/templates/pagination.html:6 posts/templates/pagination.html:10
 msgid "Previous"
 msgstr "Предыдущая"
@@ -128,3 +148,11 @@ msgstr "Предыдущая"
 #: posts/templates/pagination.html:22 posts/templates/pagination.html:26
 msgid "Next"
 msgstr "Следующая"
+
+#: posts/views.py:30
+msgid "Search result for keyword"
+msgstr "Результат поиска по ключевому слову"
+
+#: posts/views.py:33
+msgid "Search by tag"
+msgstr "Поиск по тэгу"

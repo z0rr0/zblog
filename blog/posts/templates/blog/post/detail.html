@@ -1,7 +1,15 @@
 {% extends 'blog/base.html' %}
+{% load i18n %}
 {% block title %}{{post.title}}{% endblock %}
 {% block content %}
-    <h1>{{post.title}}</h1>
-    <p>Published {{ post.publish }}</p>
-    <p>{{ post.body|linebreaks }}</p>
+  <h3>
+    {{post.title}}
+    {% if request.is_staff_user %}
+      <small>({{ post.status }})</small>
+    {% endif %}
+  </h3>
+  <h6>
+    <span class="badge badge-secondary">{% trans "Published" %} {{ post.publish }}</span>
+  </h6>
+  <p>{{ post.body|linebreaks }}</p>
 {% endblock %}

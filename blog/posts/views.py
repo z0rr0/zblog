@@ -1,28 +1,19 @@
-from django.shortcuts import render
 from django.conf import settings
 from django.db.models import Q
-from django.http import HttpResponse, HttpRequest
-from django.views.generic import ListView, DetailView
+from django.http import HttpRequest, HttpResponse
+from django.utils.translation import gettext as _
+from django.views.generic import DetailView, ListView
 
-from posts.models import Post, Tag
+from posts.models import Post
 
 
 class StaffViewMixin:
 
-    @property
-    def is_authenticated_staff(self):
-        return self.request.user.is_authenticated and self.request.user.is_staff
-
     def get_queryset(self):
         queryset = super().get_queryset()
-        if not self.is_authenticated_staff:
+        if not self.request.is_staff_user:
             queryset = Post.published.all()
         return queryset
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['is_staff'] = self.is_authenticated_staff
-        return context
 
 
 class PostListView(StaffViewMixin, ListView):
@@ -33,8 +24,14 @@ class PostListView(StaffViewMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
-        # add tags and user
-        context['tags'] = Tag.objects.all()
+        search = self.request.GET.get('search')
+        tag = self.kwargs.get('tag')
+        if search:
+            info = _('Search result for keyword')
+            context['info'] = f'{info} "{search}"'
+        elif tag:
+            info = _('Search by tag')
+            context['info'] = f'{info} "{tag}"'
         return context
 
     def get_queryset(self):

@@ -23,19 +23,20 @@ python manage.py compilemessages
 cd blog
 python manage.py migrate
 python manage.py createsuperuser
+python manage.py compilemessages
 ```
 
 ## Roadmap
 
 1. ~~base models~~
 1. ~~admin pages~~
-1. base template
+1. ~~base template~~
 1. error pages
-1. flat pages
+1. ~~flat pages~~
 1. markdown support
-1. index/post pages
-1. site map
-1. rss feed
+1. ~~index/post pages~~
+1. ~~site map~~
+1. ~~rss feed~~
 1. comments support
 
 ## License

@@ -1,17 +1,18 @@
+from django.conf import settings
 from django.contrib.syndication.views import Feed
+from django.utils.translation import gettext as _
 
 from posts.models import Post
 
 
 class LatestPostsFeed(Feed):
     """RSS feed, based on https://docs.djangoproject.com/en/2.2/ref/contrib/syndication/"""
-    title = 'Zblog posts'
+    title = settings.BLOG_TITLE
     link = '/'
-    description = 'New posts.'
-    limit = 10
+    description = _('New posts')
 
     def items(self):
-        return Post.published.all()[:self.limit]
+        return Post.published.all()[:settings.POSTS_PER_RSS]
 
     def item_title(self, item):
         return item.title

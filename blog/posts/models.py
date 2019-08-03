@@ -16,6 +16,11 @@ class PublishManager(StatusManager):
         return super().get_queryset().filter(publish__lte=timezone.now())
 
 
+class PublishTagManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(posts__status='published', posts__publish__lte=timezone.now())
+
+
 class StatusModel(models.Model):
     PUBLISHED = 'published'
     DRAFT = 'draft'
@@ -48,6 +53,9 @@ class CreatedUpdatedModel(models.Model):
 class Tag(CreatedUpdatedModel):
     name = models.SlugField(_('name'), max_length=64, unique=True)
 
+    objects = models.Manager()
+    published = PublishTagManager()
+
     class Meta:
         ordering = ('name',)
         verbose_name = _('tag')
@@ -66,7 +74,7 @@ class Post(StatusModel, CreatedUpdatedModel):
     slug = models.SlugField(_('slug'), unique_for_date='publish')
     body = models.TextField(_('body'))
     publish = models.DateTimeField(_('date of publication'), db_index=True, default=timezone.now)
-    tags = models.ManyToManyField(Tag, verbose_name=_('tags'), blank=True)
+    tags = models.ManyToManyField(Tag, verbose_name=_('tags'), blank=True, related_name='posts')
 
     objects = models.Manager()
     active = StatusManager()
@@ -91,7 +99,7 @@ class Post(StatusModel, CreatedUpdatedModel):
 
 
 class Comment(StatusModel, CreatedUpdatedModel):
-    post = models.ForeignKey(Post, verbose_name=_('post'), on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, verbose_name=_('post'), related_name='comments', on_delete=models.CASCADE)
     author = models.CharField(_('author'), max_length=512, null=True, blank=True)
     message = models.TextField(_('message'), help_text=_('comment text'))
     reply = models.ForeignKey(

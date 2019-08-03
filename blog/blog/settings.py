@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'posts.middleware.BlogMiddleware',
 ]
 
 ROOT_URLCONF = 'blog.urls'
@@ -142,6 +143,10 @@ CACHES = {
     },
 }
 POSTS_PER_PAGE = 5
+
+# sources github link
+GITHUB_LINK = 'https://github.com/z0rr0/zblog'
+BLOG_TITLE = 'Zblog'
 
 if 'test' in sys.argv:
     CACHES['default']['BACKEND'] = 'django.core.cache.backends.dummy.DummyCache'
