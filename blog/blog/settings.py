@@ -140,10 +140,13 @@ SITE_ID = 1
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': '/tmp/zorro.website',
-        'TIMEOUT': 300,
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     },
+    'queries': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/tmp/zblog',
+        'TIMEOUT': 300,
+    }
 }
 POSTS_PER_PAGE = 5
 POSTS_PER_RSS = 20
