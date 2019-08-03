@@ -1,0 +1,6 @@
+{% extends 'error_tpl.html' %}
+{% load i18n %}
+{% block title %}500{% endblock %}
+{% block content %}
+  <div id="error_msg">{% trans "Sorry, internal server error" %}</div>
+{% endblock %}
