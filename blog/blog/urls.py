@@ -44,7 +44,7 @@ urlpatterns = [
                 'posts': GenericSitemap(posts_sitemap_info, priority=0.6),
             },
         },
-        name='django.contrib.sitemaps.views.sitemap',
+        name='sitemap',
     ),
 ]
 

@@ -143,6 +143,7 @@ CACHES = {
     },
 }
 POSTS_PER_PAGE = 5
+POSTS_PER_RSS = 20
 
 # sources github link
 GITHUB_LINK = 'https://github.com/z0rr0/zblog'

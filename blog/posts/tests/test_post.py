@@ -1,8 +1,12 @@
 from datetime import timedelta
 
 from django.contrib.auth.models import User
+from django.conf import settings
 from django.test import TestCase
+from django.urls import reverse
 from django.utils import timezone
+from django.contrib.flatpages.models import FlatPage
+from django.contrib.sites.models import Site
 
 from posts.models import Post
 
@@ -46,9 +50,6 @@ class PostBaseTestCase(TestCase):
             password='password',
             is_staff=True,
         )
-
-    # def tearDown(self) -> None:
-    #     self.client.logout()
 
 
 class PostModelTestCase(PostBaseTestCase):
@@ -113,3 +114,36 @@ class PostViewTestCase(PostBaseTestCase):
         excluded = []
         self.assertTrue(self.client.login(username=self.user.username, password='password'))
         self._test_detail(included, excluded)
+
+
+class AdditionalPagesTestCase(PostBaseTestCase):
+
+    def setUp(self) -> None:
+        super().setUp()
+        site = Site.objects.get(pk=settings.SITE_ID)
+        self.flat_page = FlatPage.objects.create(
+            url='/about/',
+            title='About',
+            content='about',
+        )
+        self.flat_page.sites.add(site)
+
+    def test_about(self):
+        url = reverse('about')
+        resp = self.client.get(url)
+        self.assertEqual(resp.status_code, 200)
+
+        tpl = '<title>{} - {}</title>'
+        self.assertContains(resp, tpl.format(settings.BLOG_TITLE, self.flat_page.title), html=True)
+
+    def test_feed(self):
+        url = reverse('feed')
+        resp = self.client.get(url)
+        self.assertEqual(resp.status_code, 200)
+        self.assertContains(resp, 'test1')
+
+    def test_sitemap(self):
+        url = reverse('sitemap')
+        resp = self.client.get(url)
+        self.assertEqual(resp.status_code, 200)
+        self.assertContains(resp, 'test1')
