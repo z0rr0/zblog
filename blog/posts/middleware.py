@@ -16,10 +16,13 @@ class BlogMiddleware:
         tags_qs = Tag.objects.all() if request.is_staff_user else Tag.published.all()
         request.tags = tags_qs.values('name').annotate(count=Count('posts__pk')).order_by('-count')
 
-        # footer links
+        # settings configuration params
         request.settings_params = {
             'github': settings.GITHUB_LINK,
             'title': settings.BLOG_TITLE,
+            'meta_description': settings.META_DESCRIPTION,
+            'meta_author': settings.META_AUTHOR,
+            'lang': settings.LANGUAGE_CODE.split('-', 1)[0],
         }
 
         response = self.get_response(request)

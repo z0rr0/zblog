@@ -1,12 +1,12 @@
 {% load static %}
 {% load i18n %}
 <!doctype html>
-<html lang="en" class="h-100">
+<html lang="{{request.settings_params.lang}}" class="h-100">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Personal blog">
-    <meta name="author" content="Aleksander Zaitsev">
+    <meta name="description" content="{{request.settings_params.meta_description}}">
+    <meta name="author" content="{{request.settings_params.meta_author}}">
     <title>{% block title %}{% endblock %}</title>
 
     <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700" rel="stylesheet" type="text/css">

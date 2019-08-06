@@ -151,6 +151,9 @@ POSTS_PER_RSS = 20
 # sources github link
 GITHUB_LINK = 'https://github.com/z0rr0/zblog'
 BLOG_TITLE = 'Zblog'
+META_DESCRIPTION = 'Personal blog'
+META_AUTHOR = 'Author'
+
 
 if 'test' in sys.argv:
     CACHES['default']['BACKEND'] = 'django.core.cache.backends.dummy.DummyCache'
