@@ -23,6 +23,7 @@ class BlogMiddleware:
             'meta_description': settings.META_DESCRIPTION,
             'meta_author': settings.META_AUTHOR,
             'lang': settings.LANGUAGE_CODE.split('-', 1)[0],
+            'version': settings.VERSION,
         }
 
         response = self.get_response(request)

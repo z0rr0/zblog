@@ -154,6 +154,14 @@ BLOG_TITLE = 'Zblog'
 META_DESCRIPTION = 'Personal blog'
 META_AUTHOR = 'Author'
 
+# version
+VERSION = ''
+try:
+    with open(os.path.join(BASE_DIR, 'version.txt')) as f:
+        VERSION = f.readline()
+except IOError:
+    pass
+
 
 if 'test' in sys.argv:
     CACHES['default']['BACKEND'] = 'django.core.cache.backends.dummy.DummyCache'

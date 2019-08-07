@@ -105,4 +105,5 @@ venv.bak/
 
 /blog/static/
 /blog/media/
+/blog/version.txt
 .gitconfig
