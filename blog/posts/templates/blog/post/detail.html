@@ -11,5 +11,5 @@
   <h6>
     <span class="badge badge-secondary">{% trans "Published" %} {{ post.publish }}</span>
   </h6>
-  <p>{{ post.body|linebreaks }}</p>
+  <p>{{ post.body|safe|linebreaks }}</p>
 {% endblock %}

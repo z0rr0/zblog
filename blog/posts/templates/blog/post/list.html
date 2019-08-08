@@ -13,7 +13,7 @@
         <small>({{ post.get_status_display }})</small>
       {% endif %}
     </h3>
-    <p>{{ post.body|truncatewords_html:50 }}</p>
+    <p>{{ post.body|safe|truncatewords_html:50 }}</p>
   {% endfor %}
   {% if paginator.num_pages > 1 %}
     {% include "pagination.html" with page=page_obj page_range=paginator.page_range %}
