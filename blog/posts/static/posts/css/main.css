@@ -23,6 +23,13 @@ body {
 #error_msg {
   padding-top: 50px;
 }
+.post_list {
+  padding-bottom: 30px;
+}
+.post_details {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
 /*#info_panel {*/
 /*  border-left: solid;*/
 /*  border-left-width: 1pt;*/
