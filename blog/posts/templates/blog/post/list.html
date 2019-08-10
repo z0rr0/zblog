@@ -14,7 +14,7 @@
       {% endif %}
     </h3>
     <div class="post_list">
-      {{ post.body|safe|linebreaks|truncatewords_html:50 }}
+      {{ post.body|safe|truncatewords_html:50 }}
     </div>
   {% endfor %}
   {% if paginator.num_pages > 1 %}
