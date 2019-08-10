@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zorro.website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-03 18:33+0300\n"
-"PO-Revision-Date: 2019-08-03 18:34+0300\n"
+"POT-Creation-Date: 2019-08-10 23:47+0300\n"
+"PO-Revision-Date: 2019-08-10 23:47+0300\n"
 "Last-Translator: Alexander Zaitsev <me@axv.email>\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -158,8 +158,8 @@ msgid "Subscribe to RSS"
 msgstr "Подписаться на RSS"
 
 #: posts/templates/blog/base.html:76
-msgid "About authors"
-msgstr "Об авторах"
+msgid "About blog"
+msgstr "О блоге"
 
 #: posts/templates/blog/post/detail.html:12
 msgid "Published"
