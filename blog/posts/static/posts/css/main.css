@@ -30,6 +30,9 @@ body {
   padding-top: 15px;
   padding-bottom: 15px;
 }
+.post_image {
+  padding: 10px;
+}
 /*#info_panel {*/
 /*  border-left: solid;*/
 /*  border-left-width: 1pt;*/
