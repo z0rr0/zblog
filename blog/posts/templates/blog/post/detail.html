@@ -9,7 +9,7 @@
     {% endif %}
   </h3>
   <h6>
-    <span class="badge badge-secondary">{% trans "Published" %} {{ post.publish }}</span>
+    <span class="badge badge-secondary">{% trans "Published" %} {{ post.publish|date:"j E Y" }}</span>
   </h6>
   <div class="post_details">
     {{ post.body|safe }}

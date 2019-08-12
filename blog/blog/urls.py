@@ -31,11 +31,13 @@ posts_sitemap_info = {
     'queryset': Post.published.all(),
     'date_field': 'publish',
 }
+feed_view = vary_on_cookie(LatestPostsFeed())
 
 urlpatterns = [
     path('about/', vary_on_cookie(views.flatpage), {'url': '/about/'}, name='about'),
     path('admin/', admin.site.urls),
-    path('feed/', vary_on_cookie(LatestPostsFeed()), name='feed'),
+    path('feed/', feed_view, name='feed'),
+    path('rss/', feed_view, name='rss'),
     path('', include('posts.urls')),
     # the sitemap
     path(
