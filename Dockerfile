@@ -3,11 +3,11 @@
 # Version z0rr0/zblog:0.0.1
 # It is an Alpine based containter for python3 django applications.
 
-FROM alpine:3.10
+FROM alpine:latest
 MAINTAINER Alexander Zaitsev "admin@zorro.website"
 
 RUN apk update && apk upgrade
-RUN apk add tzdata ca-certificates gcc build-base python3 python3-dev uwsgi-python3 \
+RUN apk add tzdata ca-certificates gcc build-base python3 python3-dev uwsgi-python \
     mariadb-client mariadb-connector-c mariadb-connector-c-dev
 
 ADD requirements.txt /tmp/requirements.txt
