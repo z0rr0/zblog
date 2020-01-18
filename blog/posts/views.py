@@ -1,5 +1,7 @@
+from typing import Set
+
 from django.conf import settings
-from django.db.models import Q
+from django.db.models import Q, QuerySet
 from django.http import HttpRequest, HttpResponse
 from django.utils.translation import gettext as _
 from django.views.generic import DetailView, ListView
@@ -34,14 +36,21 @@ class PostListView(StaffViewMixin, ListView):
             context['info'] = f'{info} "{tag}"'
         return context
 
+    @staticmethod
+    def _ids_by_tag(queryset: QuerySet, value: str) -> Set[int]:
+        if not value:
+            return set()
+        return set(queryset.filter(tags__name__iexact=value).values_list('id', flat=True))
+
     def get_queryset(self):
         queryset = super().get_queryset()
         search = self.request.GET.get('search')
         if search is not None:
+            tagged_ids = self._ids_by_tag(queryset, search)
             queryset = queryset.filter(
                 Q(title__icontains=search) |
                 Q(body__icontains=search) |
-                Q(tags__name__iexact=search)
+                Q(id__in=tagged_ids)
             )
         tag = self.kwargs.get('tag')
         if tag is not None:
